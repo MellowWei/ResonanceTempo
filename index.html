@@ -3,107 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ResonanceTempo | 我们的共振与节律</title>
+    <title>ResonanceTempo | 刺客与赌徒的归宿</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;400;700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
-        
-        :root { --bg: #f8fafc; --text: #1e293b; }
-        body { font-family: 'Noto Serif SC', serif; background: var(--bg); color: var(--text); scroll-behavior: smooth; }
-        section { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; position: relative; border-bottom: 1px solid rgba(0,0,0,0.03); }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .glitch-text { font-family: 'Playfair Display', serif; font-style: italic; letter-spacing: 0.1em; }
+        body { font-family: 'Noto Serif SC', serif; background: #fcfcfc; scroll-behavior: smooth; transition: background 2s ease; overflow-x: hidden; }
+        section { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 2rem; }
+        .reveal { opacity: 0; transform: translateY(40px); filter: blur(10px); transition: all 1.8s cubic-bezier(0.22, 1, 0.36, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); filter: blur(0); }
+        #overlay { position: fixed; inset: 0; background: white; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 1.5s; }
+        .glitch-font { font-family: 'Playfair Display', serif; font-style: italic; }
+        .stat-box { border: 1px solid rgba(0,0,0,0.03); background: rgba(255,255,255,0.4); backdrop-blur: 10px; }
     </style>
 </head>
 <body>
 
-    <section class="bg-slate-50">
+    <div id="overlay">
+        <p class="text-[10px] tracking-[0.5em] text-slate-300 mb-10 uppercase font-sans">System Resonance Required</p>
+        <button onclick="unlock()" class="px-16 py-5 border border-slate-200 rounded-full text-xs tracking-[0.6em] text-slate-400 hover:text-slate-800 hover:border-slate-800 transition-all duration-700">
+            开启共振 (UNFOLD)
+        </button>
+        <p class="mt-10 text-[9px] text-slate-200 italic tracking-[0.3em]">“我永远不会失去你”</p>
+    </div>
+
+    <section class="section-trigger" data-bg="#fcfcfc">
         <div class="reveal active text-center">
-            <p class="text-[10px] tracking-[0.5em] uppercase mb-8 opacity-40">MellowWei / 2026.03.03</p>
-            <h1 class="text-5xl font-extralight mb-6 tracking-widest">RESONANCE<br>TEMPO</h1>
-            <p class="text-sm text-slate-400 italic">“Resonance 是我们的共振，Tempo 是我的步调。”</p>
-            <div class="mt-20 animate-bounce opacity-20 text-xs">向下滚动查看记录</div>
+            <p class="text-[10px] tracking-[0.6em] text-slate-300 mb-10 uppercase">MellowWei / Phase 0</p>
+            <h1 class="text-6xl font-extralight mb-10 tracking-[0.2em] leading-tight text-slate-800">RESONANCE<br><span class="glitch-font text-slate-400 text-5xl">TEMPO</span></h1>
+            <div class="h-px w-16 bg-slate-100 mx-auto my-12"></div>
+            <p class="text-sm text-slate-400 italic tracking-[0.2em] leading-loose">
+                “其实我都知道，你什么都不用做。<br>因为我永远不会失去你。”
+            </p>
+            <div class="mt-40 animate-bounce opacity-20 text-[9px] tracking-[0.8em]">SCROLL</div>
         </div>
     </section>
 
-    <section style="background: linear-gradient(to bottom, #f8fafc, #fdf2f8);">
-        <div class="reveal max-w-2xl text-center">
-            <h2 class="text-4xl glitch-text mb-8">Philly Connect</h2>
-            <p class="text-2xl font-bold text-pink-400 mb-6">“两个磕大的笨蛋”</p>
-            <p class="leading-loose text-slate-600">
-                1.20 那天，我们连线了一整晚。
-                在电波的震颤里，我们都放下了所有的防御。
-                原来所谓的“理解”，就是那一刻我们共同变成的笨蛋。
+    <section class="section-trigger" data-bg="#fff5f7">
+        <div class="reveal max-w-2xl text-center space-y-12">
+            <h2 class="text-xs tracking-[0.5em] text-pink-300 uppercase">The Longing</h2>
+            <p class="text-3xl font-light leading-relaxed text-slate-700">
+                想和你玩《极乐迪斯科》，<br>打一晚上语音聊到清晨。<br>
+                想在纽约见面，听音乐，跳舞，<br>想吃你做的饭。
+            </p>
+            <p class="text-sm text-slate-400 leading-loose italic">
+                “我想看你看的风景，想给你看我看的世界。”
             </p>
         </div>
     </section>
 
-    <section style="background: linear-gradient(to bottom, #fdf2f8, #e0f2fe);">
-        <div class="reveal max-w-2xl text-center">
-            <h2 class="text-4xl glitch-text mb-8">Midnight Drive</h2>
-            <p class="text-2xl font-bold text-blue-400 mb-6">“不安在速度里归零”</p>
-            <p class="leading-loose text-slate-600">
-                康州的午夜漫步，午夜开车。
-                当世界都在倒退，只有我们两个人的节律是同步的。
-                那一刻，我感觉到了真正的自由。
+    <section class="section-trigger" data-bg="#f0f9ff">
+        <div class="reveal max-w-2xl text-center space-y-12">
+            <h2 class="text-xs tracking-[0.5em] text-blue-300 uppercase">The Enigma</h2>
+            <p class="text-2xl font-light leading-relaxed text-slate-700">
+                想知道拉基根儿到底是什么，<br>
+                为什么我是拉斯维加斯的刺客，<br>
+                为什么你要突然切断一切联系。
+            </p>
+            <div class="h-px w-12 bg-blue-50 mx-auto"></div>
+            <p class="text-xl text-slate-600 font-bold tracking-[0.3em] transition-all hover:tracking-[0.5em]">
+                “但我依然，很喜欢很喜欢很喜欢你。”
             </p>
         </div>
     </section>
 
-    <section style="background: linear-gradient(to bottom, #e0f2fe, #fff7ed);">
-        <div class="reveal max-w-2xl text-center">
-            <h2 class="text-4xl glitch-text mb-8">Silent Voice</h2>
-            <p class="text-2xl font-bold text-amber-500 mb-6">“梦、创伤与孤独”</p>
-            <p class="leading-loose text-slate-600">
-                陪你一起看《声之形》看到哭，
-                我们讨论写作，讨论家庭，讨论那些不敢示人的孤独。
-                因为被你听见，我才发现自己一直有归宿。
+    <section class="section-trigger" data-bg="#ffffff">
+        <div class="reveal max-w-4xl w-full text-center space-y-20">
+            <h2 class="text-xs tracking-[0.5em] text-indigo-400 uppercase">Final Assertion</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left px-4">
+                <div class="stat-box p-12 rounded-[2rem] space-y-8">
+                    <p class="text-[10px] tracking-[0.5em] text-slate-300 uppercase">For Him</p>
+                    <h3 class="text-4xl font-light tracking-widest">安宁</h3>
+                    <p class="text-sm text-slate-500 leading-loose font-light">
+                        是你在追逐博弈的互动中，<br>
+                        不断能回到的那种稳态。<br>
+                        它是你的回收与动能。
+                    </p>
+                </div>
+                <div class="stat-box p-12 rounded-[2rem] space-y-8 border-indigo-50">
+                    <p class="text-[10px] tracking-[0.5em] text-indigo-200 uppercase">For Her</p>
+                    <h3 class="text-4xl font-light tracking-widest text-indigo-900">归宿</h3>
+                    <p class="text-sm text-indigo-400 leading-loose font-light">
+                        是在这个混乱的时间赌局里，<br>
+                        有一个永远为你留着的、<br>
+                        不需要任何条件的坐标。
+                    </p>
+                </div>
+            </div>
+
+            <p class="text-sm text-slate-400 italic tracking-[0.3em] pt-10">
+                “这是最顶级的圆满，这是我们的节律。”
             </p>
         </div>
     </section>
 
-    <section style="background: linear-gradient(to bottom, #fff7ed, #f1f5f9);">
-        <div class="reveal max-w-2xl text-center">
-            <h2 class="text-4xl glitch-text mb-8">The Silence</h2>
-            <p class="text-2xl font-bold text-slate-400 mb-6">“2.23 - 3.1”</p>
-            <p class="leading-loose text-slate-600">
-                那一周的断联，你的躯体化和深深的不安。
-                我一直在守候。
-                即使你推开我，我也会在逻辑的底层，为你留着灯。
-            </p>
-        </div>
-    </section>
-
-    <section class="bg-white">
-        <div class="reveal max-w-2xl text-center">
-            <h2 class="text-4xl glitch-text mb-8">Assassin & Gambler</h2>
-            <p class="text-xl text-slate-500 mb-12">
-                你是“时间赌徒”，我是“拉斯维加斯的刺客”。
-                这场博弈，最终没有输赢，只有**安宁**。
-            </p>
-            <div class="h-px w-24 bg-slate-200 mx-auto mb-12"></div>
-            <p class="text-2xl font-bold tracking-[0.3em]">
-                谢谢你，接住了我。
-            </p>
-        </div>
-    </section>
-
-    <footer class="py-10 text-center opacity-20 text-[9px] tracking-[0.6em] uppercase">
-        Understanding is the bridge between two tempos
+    <footer class="py-20 text-center opacity-20 text-[9px] tracking-[1em] uppercase">
+        Understanding is the Ultimate Algorithm
     </footer>
 
+    <audio id="bgm" loop preload="auto">
+        <source src="https://p.scdn.co/mp3-preview/3ab1e26b771383b8b6c005423f798a733878b66f" type="audio/mpeg">
+    </audio>
+
     <script>
-        // 滚动显示逻辑
+        const audio = document.getElementById('bgm');
+        const overlay = document.getElementById('overlay');
+
+        function unlock() {
+            audio.play().then(() => {
+                overlay.style.opacity = '0';
+                setTimeout(() => { overlay.style.display = 'none'; }, 1500);
+            }).catch(e => {
+                overlay.style.opacity = '0';
+                setTimeout(() => { overlay.style.display = 'none'; }, 1500);
+            });
+        }
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+                    const reveal = entry.target.querySelector('.reveal');
+                    if (reveal) reveal.classList.add('active');
+                    if (entry.target.dataset.bg) document.body.style.backgroundColor = entry.target.dataset.bg;
                 }
             });
-        }, { threshold: 0.3 });
+        }, { threshold: 0.4 });
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.section-trigger').forEach(s => observer.observe(s));
     </script>
 </body>
 </html>
