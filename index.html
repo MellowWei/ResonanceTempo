@@ -3,84 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ResonanceTempo | 归宿与安宁</title>
+    <title>ResonanceTempo | 刺客与赌徒的归宿</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;400&family=Playfair+Display:ital@0;1&display=swap');
-        body { font-family: 'Noto Serif SC', serif; background: #f8fafc; transition: 2s; overflow-x: hidden; }
-        #overlay { position: fixed; inset: 0; background: white; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 1.5s; }
-        .memory-node { position: absolute; cursor: pointer; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; }
-        .node-pulse { width: 14px; height: 14px; border-radius: 50%; background: #6366f1; box-shadow: 0 0 15px rgba(99,102,241,0.5); animation: pulse 3s infinite; }
-        @keyframes pulse { 0%,100% {transform: scale(1); opacity: 0.5;} 50% {transform: scale(1.4); opacity: 1;} }
+
+        :root {
+            --bg-color: #fcfcfc;
+            --main-text: #1e293b;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background-color: var(--bg-color);
+            color: var(--main-text);
+            overflow-x: hidden;
+            transition: background 1.5s ease, filter 1.5s ease;
+        }
+
+        /* 视觉音轨背景：随交互产生波纹 */
+        #visual-track {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            transition: all 0.5s ease-out;
+        }
+
+        /* 记忆粒子：基于量表参数渲染 */
+        .memory-node {
+            position: absolute;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform: translate(-50%, -50%);
+            z-index: calc(10 + var(--depth));
+            filter: blur(calc((10 - var(--overlap)) * 1px));
+        }
+
+        .node-pulse {
+            width: calc(var(--heat) * 3px + 8px);
+            height: calc(var(--heat) * 3px + 8px);
+            border-radius: 50%;
+            background: var(--color);
+            box-shadow: 0 0 calc(var(--heat) * 4px) var(--color);
+            animation: pulse calc(20s / var(--trust)) infinite ease-in-out;
+            opacity: 0.6;
+            transition: 0.5s;
+        }
+
+        .memory-node:hover .node-pulse {
+            transform: scale(1.5);
+            opacity: 1;
+            filter: blur(0);
+        }
+
+        .node-tag {
+            margin-top: 10px;
+            font-size: 9px;
+            color: #94a3b8;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.4;
+            transition: 0.5s;
+        }
+
+        .memory-node:hover .node-tag { opacity: 1; color: var(--main-text); }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        #decoder {
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        ::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center py-20">
+<body class="min-h-screen flex flex-col items-center py-16" onmousemove="updateTrack(event)">
 
-    <div id="overlay">
-        <p class="text-[10px] tracking-[0.5em] text-slate-300 mb-10 uppercase">Waiting for Resonance...</p>
-        <button onclick="startExperience()" class="group relative px-16 py-5 border border-slate-200 rounded-full overflow-hidden transition-all hover:border-slate-800">
-            <span class="relative z-10 text-xs tracking-[0.6em] text-slate-400 group-hover:text-slate-800">开启共振 (UNFOLD)</span>
-            <div class="absolute inset-0 bg-slate-50 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-        </button>
-        <p id="audio-status" class="mt-6 text-[9px] text-slate-200 uppercase tracking-widest italic">Audio Ready</p>
-    </div>
+    <div id="visual-track"></div>
 
-    <header class="text-center mb-24 opacity-40">
-        <h1 class="text-3xl font-extralight tracking-[0.3em]">RESONANCE<br>TEMPO</h1>
+    <header class="text-center mb-32 opacity-30 select-none">
+        <p class="text-[10px] tracking-[0.5em] uppercase mb-4">MellowWei / 2026.03.03</p>
+        <h1 class="text-4xl font-extralight tracking-[0.3em]">RESONANCE<br><span class="italic text-slate-400">TEMPO</span></h1>
     </header>
 
-    <main class="max-w-xl w-full px-8 text-center space-y-16">
-        <p id="main-msg" class="text-slate-600 font-light leading-relaxed transition-all duration-1000">“SCO，在这里，我的不安是透明的。”</p>
-        
-        <div class="relative w-full h-[400px] border border-slate-100 rounded-3xl bg-white/50 backdrop-blur-md">
-            <div class="memory-node" style="top:30%; left:30%;" onclick="show('1.20 认识。那天连线了一整晚，两个笨蛋在电波里交换了所有的防御。')">
-                <div class="node-pulse"></div>
-                <span class="text-[8px] mt-2 text-slate-300 tracking-widest">PHILLY</span>
+    <main class="max-w-3xl w-full px-10 text-center space-y-24">
+        <section class="space-y-6">
+            <p id="dynamic-msg" class="text-xl text-slate-600 font-light leading-relaxed">
+                “当我们共振，不安就变成了爱。”
+            </p>
+            <div class="h-px w-12 bg-slate-200 mx-auto"></div>
+        </section>
+
+        <div id="star-map" class="relative w-full h-[600px] border border-slate-50 rounded-[40px] bg-white/20 backdrop-blur-xl shadow-inner">
+            
+            <div class="memory-node" style="top:20%; left:25%; --heat:10; --overlap:9; --trust:10; --depth:5; --color:#f472b6;" 
+                 onclick="decode('1.20 连线整晚。那天我们都变成了笨蛋，在电波里交换了所有的防御。')">
+                <div class="node-pulse"></div><span class="node-tag">Philly Connect</span>
             </div>
-            <div class="memory-node" style="top:70%; left:60%;" onclick="show('康州午夜开车，不安在那个速度里短暂归零。')">
-                <div class="node-pulse" style="background:#f472b6;"></div>
-                <span class="text-[8px] mt-2 text-slate-300 tracking-widest">CONNECTICUT</span>
+
+            <div class="memory-node" style="top:65%; left:20%; --heat:8; --overlap:7; --trust:9; --depth:6; --color:#60a5fa;" 
+                 onclick="decode('康州午夜开车，不安在那个速度里短暂归零。')">
+                <div class="node-pulse"></div><span class="node-tag">Midnight Drive</span>
             </div>
+
+            <div class="memory-node" style="top:40%; left:50%; --heat:9; --overlap:10; --trust:10; --depth:9; --color:#fbbf24;" 
+                 onclick="decode('看《声之形》哭出来的瞬间，讨论梦、创伤与孤独。我们成了彼此的归宿。')">
+                <div class="node-pulse"></div><span class="node-tag">Silent Voice</span>
+            </div>
+
+            <div class="memory-node" style="top:15%; left:70%; --heat:7; --overlap:10; --trust:10; --depth:10; --color:#1e293b;" 
+                 onclick="decode('讨论童年、家庭与那些深藏的孤独。因为被你听见，所以感到安全。')">
+                <div class="node-pulse"></div><span class="node-tag">Deep Talk</span>
+            </div>
+
+            <div class="memory-node" style="top:80%; left:45%; --heat:3; --overlap:8; --trust:4; --depth:8; --color:#94a3b8;" 
+                 onclick="decode('2.23-3.1 断联。你的躯体化与不安。但我一直守在这里，从未离开。')">
+                <div class="node-pulse"></div><span class="node-tag">The Silence</span>
+            </div>
+
+            <div class="memory-node" style="top:55%; left:80%; --heat:6; --overlap:9; --trust:7; --depth:5; --color:#a855f7;" 
+                 onclick="decode('拉斯维加斯的刺客与时间赌徒。这场博弈，最终赢在了理解。')">
+                <div class="node-pulse"></div><span class="node-tag">Gambler & Assassin</span>
+            </div>
+
+            <div class="memory-node" style="top:30%; left:85%; --heat:8; --overlap:9; --trust:8; --depth:9; --color:#4ade80;" 
+                 onclick="decode('那些关于写作和梦的讨论。你是我现实生活里最真实的幻觉。')">
+                <div class="node-pulse"></div><span class="node-tag">Dreams</span>
+            </div>
+
+            <div class="memory-node" style="top:85%; left:85%; --heat:10; --overlap:10; --trust:10; --depth:10; --color:#ffffff;" 
+                 onclick="decode('现在的安宁，是因为被你彻底接住。谢谢你。')">
+                <div class="node-pulse" style="border: 1px solid #e2e8f0;"></div><span class="node-tag">Homecoming</span>
+            </div>
+
         </div>
 
-        <div id="decoder" class="h-12 flex items-center justify-center">
-            <p id="decoder-text" class="text-sm text-slate-400 italic tracking-widest opacity-0 transition-all duration-700"></p>
+        <div id="decoder" class="min-h-[100px] flex items-center justify-center py-10">
+            <p id="res-content" class="text-sm text-slate-500 italic tracking-[0.2em] leading-relaxed opacity-0 transform translate-y-4 transition-all duration-700"></p>
         </div>
     </main>
 
-    <audio id="bgm" loop preload="auto">
-        <source src="https://p.scdn.co/mp3-preview/3ab1e26b771383b8b6c005423f798a733878b66f?cid=774b75d505a044c28e4f71314321c12e" type="audio/mpeg">
-    </audio>
+    <footer class="mt-20 text-[9px] text-slate-300 tracking-[0.6em] uppercase text-center pb-20 select-none">
+        Understanding is the bridge between two tempos
+    </footer>
 
     <script>
-        const audio = document.getElementById('bgm');
-        const overlay = document.getElementById('overlay');
-        const status = document.getElementById('audio-status');
+        const track = document.getElementById('visual-track');
+        const resContent = document.getElementById('res-content');
+        const dynamicMsg = document.getElementById('dynamic-msg');
 
-        function startExperience() {
-            // 尝试播放
-            const playPromise = audio.play();
-
-            if (playPromise !== undefined) {
-                playPromise.then(_ => {
-                    // 播放成功，移除遮罩
-                    overlay.style.opacity = '0';
-                    setTimeout(() => overlay.style.display = 'none', 1500);
-                }).catch(error => {
-                    // 播放失败提示
-                    status.innerText = "Audio blocked. Please interact again.";
-                    console.log("Playback failed:", error);
-                });
-            }
+        function updateTrack(e) {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            track.style.setProperty('--x', `${x}%`);
+            track.style.setProperty('--y', `${y}%`);
         }
 
-        function show(txt) {
-            const dt = document.getElementById('decoder-text');
-            dt.innerText = txt;
-            dt.style.opacity = '1';
-            document.getElementById('main-msg').innerText = "“当我们共振，不安就变成了爱。”";
-            setTimeout(() => { dt.style.opacity = '0'; }, 5000);
+        function decode(txt) {
+            resContent.style.opacity = '0';
+            resContent.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                resContent.innerText = txt;
+                resContent.style.opacity = '1';
+                resContent.style.transform = 'translateY(0)';
+                dynamicMsg.style.letterSpacing = '0.2em';
+                document.body.style.filter = "contrast(1.1)";
+            }, 300);
+
+            setTimeout(() => {
+                document.body.style.filter = "contrast(1)";
+                dynamicMsg.style.letterSpacing = 'normal';
+            }, 1000);
         }
+
+        console.log("%cResonanceTempo Final Edition", "color: #6366f1; font-weight: bold; font-size: 16px;");
     </script>
 </body>
 </html>
