@@ -9,9 +9,9 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;400;700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
         body { font-family: 'Noto Serif SC', serif; background: #fcfcfc; scroll-behavior: smooth; transition: background 2s ease; overflow-x: hidden; }
         section { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 2rem; }
-        .reveal { opacity: 0; transform: translateY(40px); filter: blur(10px); transition: all 1.8s cubic-bezier(0.22, 1, 0.36, 1); }
+        .reveal { opacity: 0; transform: translateY(40px); filter: blur(10px); transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); filter: blur(0); }
-        #overlay { position: fixed; inset: 0; background: white; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 1.5s; }
+        #overlay { position: fixed; inset: 0; background: white; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 1s ease; }
         .glitch-font { font-family: 'Playfair Display', serif; font-style: italic; }
         .stat-box { border: 1px solid rgba(0,0,0,0.03); background: rgba(255,255,255,0.4); backdrop-blur: 10px; }
     </style>
@@ -19,8 +19,8 @@
 <body>
 
     <div id="overlay">
-        <p class="text-[10px] tracking-[0.5em] text-slate-300 mb-10 uppercase font-sans">System Resonance Required</p>
-        <button onclick="unlock()" class="px-16 py-5 border border-slate-200 rounded-full text-xs tracking-[0.6em] text-slate-400 hover:text-slate-800 hover:border-slate-800 transition-all duration-700">
+        <p class="text-[10px] tracking-[0.5em] text-slate-300 mb-10 uppercase">System Resonance Required</p>
+        <button onclick="forceUnlock()" class="px-16 py-5 border border-slate-200 rounded-full text-xs tracking-[0.6em] text-slate-400 hover:text-slate-800 hover:border-slate-800 transition-all duration-700">
             开启共振 (UNFOLD)
         </button>
         <p class="mt-10 text-[9px] text-slate-200 italic tracking-[0.3em]">“我永远不会失去你”</p>
@@ -28,13 +28,13 @@
 
     <section class="section-trigger" data-bg="#fcfcfc">
         <div class="reveal active text-center">
-            <p class="text-[10px] tracking-[0.6em] text-slate-300 mb-10 uppercase">MellowWei / Phase 0</p>
+            <p class="text-[10px] tracking-[0.6em] text-slate-300 mb-10 uppercase font-sans">MellowWei / 1.20 - 2026</p>
             <h1 class="text-6xl font-extralight mb-10 tracking-[0.2em] leading-tight text-slate-800">RESONANCE<br><span class="glitch-font text-slate-400 text-5xl">TEMPO</span></h1>
             <div class="h-px w-16 bg-slate-100 mx-auto my-12"></div>
             <p class="text-sm text-slate-400 italic tracking-[0.2em] leading-loose">
                 “其实我都知道，你什么都不用做。<br>因为我永远不会失去你。”
             </p>
-            <div class="mt-40 animate-bounce opacity-20 text-[9px] tracking-[0.8em]">SCROLL</div>
+            <div class="mt-40 animate-bounce opacity-20 text-[9px] tracking-[0.8em]">SCROLL DOWN</div>
         </div>
     </section>
 
@@ -42,12 +42,10 @@
         <div class="reveal max-w-2xl text-center space-y-12">
             <h2 class="text-xs tracking-[0.5em] text-pink-300 uppercase">The Longing</h2>
             <p class="text-3xl font-light leading-relaxed text-slate-700">
-                想和你玩《极乐迪斯科》，<br>打一晚上语音聊到清晨。<br>
-                想在纽约见面，听音乐，跳舞，<br>想吃你做的饭。
+                想和你玩《极乐迪斯科》，打一晚上语音。<br>
+                想在纽约见面，听音乐，跳舞，想吃你做的饭。<br>
             </p>
-            <p class="text-sm text-slate-400 leading-loose italic">
-                “我想看你看的风景，想给你看我看的世界。”
-            </p>
+            <p class="text-sm text-slate-400 leading-loose italic">“我想看你看的风景，想给你看我看的世界。”</p>
         </div>
     </section>
 
@@ -59,64 +57,52 @@
                 为什么我是拉斯维加斯的刺客，<br>
                 为什么你要突然切断一切联系。
             </p>
-            <div class="h-px w-12 bg-blue-50 mx-auto"></div>
-            <p class="text-xl text-slate-600 font-bold tracking-[0.3em] transition-all hover:tracking-[0.5em]">
-                “但我依然，很喜欢很喜欢很喜欢你。”
-            </p>
+            <p class="text-xl text-slate-600 font-bold tracking-[0.3em]">“但我依然，很喜欢很喜欢很喜欢你。”</p>
         </div>
     </section>
 
     <section class="section-trigger" data-bg="#ffffff">
         <div class="reveal max-w-4xl w-full text-center space-y-20">
             <h2 class="text-xs tracking-[0.5em] text-indigo-400 uppercase">Final Assertion</h2>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left px-4">
-                <div class="stat-box p-12 rounded-[2rem] space-y-8">
-                    <p class="text-[10px] tracking-[0.5em] text-slate-300 uppercase">For Him</p>
-                    <h3 class="text-4xl font-light tracking-widest">安宁</h3>
-                    <p class="text-sm text-slate-500 leading-loose font-light">
-                        是你在追逐博弈的互动中，<br>
-                        不断能回到的那种稳态。<br>
-                        它是你的回收与动能。
-                    </p>
+                <div class="stat-box p-12 rounded-[2rem] space-y-6">
+                    <h3 class="text-3xl font-light tracking-widest text-slate-800">安宁</h3>
+                    <p class="text-sm text-slate-500 leading-loose">是你在追逐博弈中，不断能回到的稳态。它是你的回收与动能。</p>
                 </div>
-                <div class="stat-box p-12 rounded-[2rem] space-y-8 border-indigo-50">
-                    <p class="text-[10px] tracking-[0.5em] text-indigo-200 uppercase">For Her</p>
-                    <h3 class="text-4xl font-light tracking-widest text-indigo-900">归宿</h3>
-                    <p class="text-sm text-indigo-400 leading-loose font-light">
-                        是在这个混乱的时间赌局里，<br>
-                        有一个永远为你留着的、<br>
-                        不需要任何条件的坐标。
-                    </p>
+                <div class="stat-box p-12 rounded-[2rem] space-y-6">
+                    <h3 class="text-3xl font-light tracking-widest text-indigo-900">归宿</h3>
+                    <p class="text-sm text-indigo-400 leading-loose">是在这个混乱的赌局里，有一个永远为你留着的坐标。</p>
                 </div>
             </div>
-
-            <p class="text-sm text-slate-400 italic tracking-[0.3em] pt-10">
-                “这是最顶级的圆满，这是我们的节律。”
-            </p>
+            <p class="text-sm text-slate-300 italic tracking-[0.3em]">“这是最顶级的圆满，这是我们的节律。”</p>
         </div>
     </section>
-
-    <footer class="py-20 text-center opacity-20 text-[9px] tracking-[1em] uppercase">
-        Understanding is the Ultimate Algorithm
-    </footer>
 
     <audio id="bgm" loop preload="auto">
         <source src="https://p.scdn.co/mp3-preview/3ab1e26b771383b8b6c005423f798a733878b66f" type="audio/mpeg">
     </audio>
 
     <script>
-        const audio = document.getElementById('bgm');
-        const overlay = document.getElementById('overlay');
+        function forceUnlock() {
+            const audio = document.getElementById('bgm');
+            const overlay = document.getElementById('overlay');
+            
+            // 1. 尝试播放音频
+            const playPromise = audio.play();
+            
+            // 2. 无论音频结果如何，强制移除遮罩
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                // 强制激活第一个 Section 的动画
+                document.querySelector('.reveal').classList.add('active');
+            }, 1000);
 
-        function unlock() {
-            audio.play().then(() => {
-                overlay.style.opacity = '0';
-                setTimeout(() => { overlay.style.display = 'none'; }, 1500);
-            }).catch(e => {
-                overlay.style.opacity = '0';
-                setTimeout(() => { overlay.style.display = 'none'; }, 1500);
-            });
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Audio play prevented, but visual is active.");
+                });
+            }
         }
 
         const observer = new IntersectionObserver((entries) => {
@@ -127,7 +113,7 @@
                     if (entry.target.dataset.bg) document.body.style.backgroundColor = entry.target.dataset.bg;
                 }
             });
-        }, { threshold: 0.4 });
+        }, { threshold: 0.3 });
 
         document.querySelectorAll('.section-trigger').forEach(s => observer.observe(s));
     </script>
