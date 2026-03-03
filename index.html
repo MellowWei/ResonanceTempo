@@ -3,119 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> ResonanceTempo | 我与你的安宁与归宿 </title>
+    <title>ResonanceTempo | 勇气与未知的共振</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;400;700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
-        body { font-family: 'Noto Serif SC', serif; background: #fcfcfc; scroll-behavior: smooth; transition: background 2s ease; overflow-x: hidden; }
-        section { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 2rem; }
-        .reveal { opacity: 0; transform: translateY(40px); filter: blur(10px); transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); filter: blur(0); }
-        #overlay { position: fixed; inset: 0; background: white; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 1s ease; }
-        .glitch-font { font-family: 'Playfair Display', serif; font-style: italic; }
-        .stat-box { border: 1px solid rgba(0,0,0,0.03); background: rgba(255,255,255,0.4); backdrop-blur: 10px; }
+        body { margin: 0; background: #010101; color: #fff; font-family: 'Noto Serif SC', serif; overflow-x: hidden; scroll-behavior: smooth; }
+        canvas { position: fixed; top: 0; left: 0; z-index: -1; }
+        section { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 2rem; pointer-events: none; }
+        .content-box { pointer-events: auto; max-width: 650px; text-align: center; background: rgba(0,0,0,0.6); backdrop-blur: 20px; padding: 3rem; border-radius: 2.5rem; border: 1px solid rgba(255,255,255,0.08); opacity: 0; transform: translateY(40px); transition: all 1.8s cubic-bezier(0.22, 1, 0.36, 1); }
+        .content-box.active { opacity: 1; transform: translateY(0); }
+        .glitch { font-family: 'Playfair Display', serif; font-style: italic; color: #f472b6; text-shadow: 0 0 15px rgba(244, 114, 182, 0.4); }
+        #overlay { position: fixed; inset: 0; background: #000; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 2s; }
+        .glow-text { color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.5); }
     </style>
 </head>
 <body>
 
     <div id="overlay">
-        <p class="text-[10px] tracking-[0.5em] text-slate-300 mb-10 uppercase">System Resonance Required</p>
-        <button onclick="forceUnlock()" class="px-16 py-5 border border-slate-200 rounded-full text-xs tracking-[0.6em] text-slate-400 hover:text-slate-800 hover:border-slate-800 transition-all duration-700">
-            开启共振 (UNFOLD)
+        <p class="text-[10px] tracking-[0.6em] text-white/30 mb-12 uppercase">The Courage to Resonate</p>
+        <button onclick="initResonance()" class="px-16 py-5 border border-white/10 rounded-full text-xs tracking-[0.6em] text-white/50 hover:text-white hover:border-white transition-all duration-1000">
+            踏入未知 (STEP INTO UNKNOWN)
         </button>
-        <p class="mt-10 text-[9px] text-slate-200 italic tracking-[0.3em]">“我永远不会失去你”</p>
     </div>
 
-    <section class="section-trigger" data-bg="#fcfcfc">
-        <div class="reveal active text-center">
-            <p class="text-[10px] tracking-[0.6em] text-slate-300 mb-10 uppercase font-sans">MellowWei / 1.20 - 2026</p>
-            <h1 class="text-6xl font-extralight mb-10 tracking-[0.2em] leading-tight text-slate-800">RESONANCE<br><span class="glitch-font text-slate-400 text-5xl">TEMPO</span></h1>
-            <div class="h-px w-16 bg-slate-100 mx-auto my-12"></div>
-            <p class="text-sm text-slate-400 italic tracking-[0.2em] leading-loose">
-                “其实我都知道，你什么都不用做。<br>因为我永远不会失去你。”
-            </p>
-            <div class="mt-40 animate-bounce opacity-20 text-[9px] tracking-[0.8em]">SCROLL DOWN</div>
-        </div>
-    </section>
-
-    <section class="section-trigger" data-bg="#fff5f7">
-        <div class="reveal max-w-2xl text-center space-y-12">
-            <h2 class="text-xs tracking-[0.5em] text-pink-300 uppercase">The Longing</h2>
-            <p class="text-3xl font-light leading-relaxed text-slate-700">
-                想和你玩《极乐迪斯科》，打一晚上语音。<br>
-                想在纽约见面，听音乐，跳舞，想吃你做的饭。<br>
-            </p>
-            <p class="text-sm text-slate-400 leading-loose italic">“我想看你看的风景，想给你看我看的世界。”</p>
-        </div>
-    </section>
-
-    <section class="section-trigger" data-bg="#f0f9ff">
-        <div class="reveal max-w-2xl text-center space-y-12">
-            <h2 class="text-xs tracking-[0.5em] text-blue-300 uppercase">The Enigma</h2>
-            <p class="text-2xl font-light leading-relaxed text-slate-700">
-                想知道拉基根儿到底是什么，<br>
-                为什么我是拉斯维加斯的刺客，<br>
-                为什么你要突然切断一切联系。
-            </p>
-            <p class="text-xl text-slate-600 font-bold tracking-[0.3em]">“但我依然，很喜欢很喜欢很喜欢你。”</p>
-        </div>
-    </section>
-
-    <section class="section-trigger" data-bg="#ffffff">
-        <div class="reveal max-w-4xl w-full text-center space-y-20">
-            <h2 class="text-xs tracking-[0.5em] text-indigo-400 uppercase">Final Assertion</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left px-4">
-                <div class="stat-box p-12 rounded-[2rem] space-y-6">
-                    <h3 class="text-3xl font-light tracking-widest text-slate-800">安宁</h3>
-                    <p class="text-sm text-slate-500 leading-loose">是你在追逐博弈中，不断能回到的稳态。它是你的回收与动能。</p>
-                </div>
-                <div class="stat-box p-12 rounded-[2rem] space-y-6">
-                    <h3 class="text-3xl font-light tracking-widest text-indigo-900">归宿</h3>
-                    <p class="text-sm text-indigo-400 leading-loose">是在这个混乱的赌局里，有一个永远为你留着的坐标。</p>
-                </div>
+    <main>
+        <section>
+            <div class="content-box active">
+                <p class="text-[10px] tracking-[0.5em] opacity-30 mb-10 uppercase">MellowWei / 03.03</p>
+                <h1 class="text-6xl font-extralight tracking-widest mb-10">RESONANCE<br><span class="glitch text-5xl">TEMPO</span></h1>
+                <p class="text-sm text-white/40 italic leading-loose tracking-[0.2em]">
+                    “在这个充满噪音的世界，<br>
+                    唯一比理解更重要的，是选择理解的勇气。”
+                </p>
             </div>
-            <p class="text-sm text-slate-300 italic tracking-[0.3em]">“这是最顶级的圆满，这是我们的节律。”</p>
-        </div>
-    </section>
+        </section>
 
-    <audio id="bgm" loop preload="auto">
-        <source src="https://p.scdn.co/mp3-preview/3ab1e26b771383b8b6c005423f798a733878b66f" type="audio/mpeg">
-    </audio>
+        <section>
+            <div class="content-box">
+                <h2 class="text-xs tracking-[0.4em] text-blue-300 mb-10 uppercase">The Unknown</h2>
+                <p class="text-2xl font-light leading-relaxed">
+                    爱是对未知的绝对臣服。<br>
+                    我不必知道工厂里每一个零件的去向，<br>
+                    我只需在迷雾中，听见你心跳的频率。
+                </p>
+            </div>
+        </section>
 
+        <section>
+            <div class="content-box">
+                <h2 class="text-xs tracking-[0.4em] text-pink-300 mb-10 uppercase">Conspiracy</h2>
+                <p class="text-2xl font-light leading-relaxed">
+                    在 2.23 的深夜，<br>
+                    我们通过屏幕，在各自的孤独里，<br>
+                    确认了这场对抗全世界的共谋。
+                </p>
+                <div class="h-px w-12 bg-white/10 mx-auto my-10"></div>
+                <p class="text-lg glow-text italic">“原来你也在这里，原来你也这么勇敢。”</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="content-box">
+                <h2 class="text-xs tracking-[0.5em] text-indigo-400 mb-12 uppercase">The Architect</h2>
+                <p class="text-2xl font-light leading-relaxed">
+                    你在脑内工厂搭建零件，我在云端建模。<br>
+                    即便这部科幻小说还没有结局，<br>
+                    我也愿意为你，一直写下去。
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="content-box">
+                <div class="grid grid-cols-2 gap-10 text-left">
+                    <div class="space-y-4">
+                        <p class="text-pink-400 text-xs tracking-[0.3em] uppercase">安宁 / Serenity</p>
+                        <p class="text-[11px] opacity-60 leading-loose">是当你面对未知时，仍能回到的稳态。</p>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-blue-400 text-xs tracking-[0.3em] uppercase">归宿 / Home</p>
+                        <p class="text-[11px] opacity-60 leading-loose">是在我不理解你时，依然能接住你的勇气。</p>
+                    </div>
+                </div>
+                <div class="h-px w-16 bg-white/10 mx-auto mt-20 mb-8"></div>
+                <p class="text-sm opacity-50 italic tracking-[0.4em]">“圆满不在于看透，而在于共振。”</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        function forceUnlock() {
-            const audio = document.getElementById('bgm');
-            const overlay = document.getElementById('overlay');
+        let scene, camera, renderer, particles, clock;
+        function initResonance() {
+            document.getElementById('overlay').style.opacity = '0';
+            setTimeout(() => document.getElementById('overlay').style.display = 'none', 2000);
             
-            // 1. 尝试播放音频
-            const playPromise = audio.play();
-            
-            // 2. 无论音频结果如何，强制移除遮罩
-            overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-                // 强制激活第一个 Section 的动画
-                document.querySelector('.reveal').classList.add('active');
-            }, 1000);
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
 
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log("Audio play prevented, but visual is active.");
-                });
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            const geometry = new THREE.BufferGeometry();
+            const pos = [], cols = [];
+            for (let i = 0; i < 12000; i++) {
+                pos.push(THREE.MathUtils.randFloatSpread(15), THREE.MathUtils.randFloatSpread(15), THREE.MathUtils.randFloatSpread(15));
+                const c = Math.random() > 0.5 ? new THREE.Color(0xf472b6) : new THREE.Color(0x60a5fa);
+                cols.push(c.r, c.g, c.b);
             }
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(cols, 3));
+            
+            const mat = new THREE.PointsMaterial({ size: 0.012, vertexColors: true, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending });
+            particles = new THREE.Points(geometry, mat);
+            scene.add(particles);
+
+            clock = new THREE.Clock();
+            animate();
         }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const reveal = entry.target.querySelector('.reveal');
-                    if (reveal) reveal.classList.add('active');
-                    if (entry.target.dataset.bg) document.body.style.backgroundColor = entry.target.dataset.bg;
-                }
-            });
-        }, { threshold: 0.3 });
+        function animate() {
+            requestAnimationFrame(animate);
+            const t = clock.getElapsedTime();
+            particles.rotation.y = t * 0.04;
+            particles.rotation.z = Math.sin(t * 0.1) * 0.1;
+            camera.position.z = 5 + window.scrollY * 0.003;
+            renderer.render(scene, camera);
+        }
 
-        document.querySelectorAll('.section-trigger').forEach(s => observer.observe(s));
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.content-box').forEach(b => {
+                if(b.parentElement.getBoundingClientRect().top < window.innerHeight * 0.7) b.classList.add('active');
+            });
+        });
     </script>
 </body>
 </html>
