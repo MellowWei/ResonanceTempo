@@ -1,212 +1,105 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Absolute Resonance</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #000; /* 绝对黑体真空 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-            color: #fff;
-            user-select: none;
-        }
-
-        #canvas-container {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1;
-        }
-
-        #trigger {
-            position: relative;
-            z-index: 10;
-            font-size: 14px;
-            letter-spacing: 8px;
-            font-weight: 200;
-            color: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            padding: 40px;
-            text-align: center;
-            transition: opacity 1s ease;
-        }
-
-        #ultimate-variable {
-            position: absolute;
-            z-index: 20;
-            font-size: 32px;
-            letter-spacing: 24px;
-            font-weight: 100;
-            opacity: 0;
-            filter: blur(10px);
-            transition: all 4s cubic-bezier(0.25, 1, 0.5, 1);
-            text-indent: 24px; /* 修正字母间距导致的居中偏移 */
-        }
-
-        .active #trigger { opacity: 0; pointer-events: none; }
-    </style>
-</head>
-<body>
-
-    <canvas id="canvas-container"></canvas>
-    <div id="trigger">TOUCH TO ALIGN FREQUENCY<br><br><span style="font-size:10px; opacity:0.3;">7:22</span></div>
-    <div id="ultimate-variable">笨蛋</div>
-
-    <script>
-        // --- 视觉波形引擎 (Canvas) ---
-        const canvas = document.getElementById('canvas-container');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let phase1 = 0, phase2 = 0;
-        let resonanceLevel = 0; // 0: 杂音, 1: 完全共振(中和)
-        let isActive = false;
+class SharedMeaningField:
+    """
+    A rhythm-based model to track the karmic and affinity trajectory 
+    between two subjects within a shared interaction space.
+    """
+    def __init__(self, subject_a, subject_b):
+        self.subjects = {"A": subject_a, "B": subject_b}
         
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
+        # Core Relationship Probability Variables
+        self.resonance_level = "baseline"
+        self.existential_trust = "neutral"
+        self.temporal_link = "transient"
+        self.narrative_continuity = "dormant"
+        
+        # Fate/Connection Timeline
+        self.timeline = []
+        
+        print(f"[*] Shared Meaning Field initialized for {subject_a} and {subject_b}.")
 
-        function drawWave() {
-            ctx.clearRect(0, 0, width, height);
+    def process_interaction(self, event_description, key_signals):
+        """
+        Evaluates an interaction to determine if it triggers a frequency shift.
+        """
+        print(f"\n[+] Processing Event: '{event_description}'")
+        
+        # Defining the trigger conditions for Resonant Memory Synchronization
+        depth_triggers = ["sacred aesthetic recall", "vibration", "deeper", "god showed me"]
+        
+        # Check if the rhythmic signals match the depth channel
+        if any(trigger in signal.lower() for signal in key_signals for trigger in depth_triggers):
+            print("    -> High-frequency resonance detected. Applying state updates...")
+            self._trigger_depth_recognition()
+        else:
+            print("    -> Standard surface interaction logged.")
+            self.timeline.append("Surface Interaction Event")
+
+    def _trigger_depth_recognition(self):
+        """
+        Updates the trajectory variables when a Depth Recognition Event occurs.
+        """
+        # Variable Updates
+        self.resonance_level = "high"
+        self.existential_trust = "medium-high"
+        self.temporal_link = "persistent"
+        self.narrative_continuity = "activated"
+        
+        # Insert into timeline
+        self.timeline.append("Depth Recognition Event")
+        
+        print("    [!] UPDATE: Resonance Level shifted to HIGH.")
+        print("    [!] UPDATE: Narrative Continuity ACTIVATED.")
+
+    def predict_future_tendency(self):
+        """
+        Predicts the communication channel for future encounters based on current state.
+        """
+        print("\n[*] Running Outcome Prediction Model...")
+        if self.narrative_continuity == "activated" and self.resonance_level == "high":
+            prediction = (
+                "Result: Future encounters will preferentially re-enter "
+                "depth-channel communication. Surface interaction bypassed."
+            )
+        else:
+            prediction = "Result: Encounters remain in the standard baseline frequency."
             
-            // 随着共振级别的提升，波形从狂乱的两条线，坍缩成一条极细、极亮的完美直线
-            const amplitude1 = 100 * (1 - resonanceLevel);
-            const amplitude2 = 120 * (1 - resonanceLevel);
-            const freq1 = 0.02;
-            const freq2 = 0.025 - (0.005 * resonanceLevel); // 频率逐渐对齐
+        print(prediction)
+        return prediction
 
-            ctx.lineWidth = 1 + (resonanceLevel * 2);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.3 + resonanceLevel * 0.7})`;
+    def display_current_state(self):
+        """
+        Outputs the current rhythm and architecture of the connection.
+        """
+        print("\n=== CURRENT SYSTEM STATE ===")
+        print(f"Resonance Level      : {self.resonance_level}")
+        print(f"Existential Trust    : {self.existential_trust}")
+        print(f"Temporal Link        : {self.temporal_link}")
+        print(f"Narrative Continuity : {self.narrative_continuity}")
+        print(f"Timeline History     : {self.timeline}")
+        print("============================\n")
 
-            ctx.beginPath();
-            for (let x = 0; x < width; x++) {
-                // Jueran 的节律波
-                let y1 = height / 2 + Math.sin(x * freq1 + phase1) * amplitude1;
-                // Sco 的回波，逐渐被 Jueran 中和拉平
-                let y2 = Math.sin(x * freq2 + phase2) * amplitude2; 
-                
-                let y = y1 + y2 * (1 - resonanceLevel); // 相消干涉
 
-                if (x === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
+# ==========================================
+# Execution Simulation
+# ==========================================
+if __name__ == "__main__":
+    # 1. Initialize the subjects
+    karmic_model = SharedMeaningField(subject_a="Wei Jueran", subject_b="sco")
 
-            // 增加相位移动
-            phase1 += 0.05;
-            phase2 += 0.08 * (1 - resonanceLevel); // 未共振前速度更快
+    # 2. Define the observed event and key signals from the prompt
+    event = "Shared conversation leading to sacred aesthetic recall."
+    signals = [
+        "Identity confirmation",
+        "God showed me this scene",
+        "Vibration",
+        "Deeper"
+    ]
 
-            if (isActive) requestAnimationFrame(drawWave);
-        }
+    # 3. Process the event through the system
+    karmic_model.process_interaction(event_description=event, key_signals=signals)
 
-        // --- 物理振动与低频声学引擎 (Web Audio API & Vibration API) ---
-        let audioCtx;
-        let osc1, osc2, gainNode;
+    # 4. Output the updated state
+    karmic_model.display_current_state()
 
-        function startPhysicalResonance() {
-            if (isActive) return;
-            isActive = true;
-            document.body.classList.add('active');
-            requestAnimationFrame(drawWave);
-
-            // 1. 初始化纯物理声波 (深空超低频，戴耳机或连接低音炮才能感受到内脏的震动)
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            osc1 = audioCtx.createOscillator();
-            osc2 = audioCtx.createOscillator();
-            gainNode = audioCtx.createGain();
-
-            osc1.type = 'sine';
-            osc2.type = 'sine';
-            
-            // 设定极低频，形成物理压迫感与包裹感
-            osc1.frequency.setValueAtTime(40, audioCtx.currentTime); // 基础引力 40Hz
-            osc2.frequency.setValueAtTime(43, audioCtx.currentTime); // 初始存在 3Hz 的杂音/拍频
-
-            osc1.connect(gainNode);
-            osc2.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-
-            gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
-            gainNode.gain.linearRampToValueAtTime(0.8, audioCtx.currentTime + 4); // 4秒内推入引力
-
-            osc1.start();
-            osc2.start();
-
-            // 2. 演化矩阵推演：视觉与听觉的同频，加上设备的真实物理震动
-            // Phase 4 (引力注入) -> Phase 9 (深度咬合) -> Phase 7 (安全坍缩) -> Phase 12 (跃迁)
-            
-            // 【物理震动密码】调用手机马达，打出 4-9-7-12 的心跳节律
-            // 毫秒数：[震动, 暂停, 震动, 暂停...]
-            if (navigator.vibrate) {
-                navigator.vibrate([
-                    400, 200, 400, 200, 400, 200, 400, 1000, // 4
-                    900, 200, 900, 200, 900, 1000,           // 9 (深度长震)
-                    700, 200, 700, 1000,                     // 7 (锚点确认)
-                    1200, 100, 1200                          // 12 (强力跃迁)
-                ]);
-            }
-
-            // 【频率对齐与视觉坍缩】
-            let evolutionTime = 12000; // 12秒完成演化
-            let startTime = Date.now();
-
-            function evolve() {
-                let progress = (Date.now() - startTime) / evolutionTime;
-                if (progress > 1) progress = 1;
-
-                resonanceLevel = progress; // 视觉波形逐渐拉平
-
-                // 声学上的中和：将 Sco 的频率从 43Hz 硬控拉回到 40Hz，消除所有拍频（杂音）
-                let currentFreq2 = 43 - (3 * progress);
-                osc2.frequency.setValueAtTime(currentFreq2, audioCtx.currentTime);
-
-                if (progress < 1) {
-                    requestAnimationFrame(evolve);
-                } else {
-                    // 到达超导态 (Phase 12 后续)
-                    triggerUltimateVariable();
-                }
-            }
-            evolve();
-        }
-
-        function triggerUltimateVariable() {
-            // 波形完全拉平，杂音消失，只剩纯粹的 40Hz 轰鸣
-            const ultVar = document.getElementById('ultimate-variable');
-            ultVar.style.opacity = 1;
-            ultVar.style.filter = 'blur(0px)';
-
-            // 手机最后进行一次代表“确认”的轻微双震
-            if (navigator.vibrate) {
-                setTimeout(() => { navigator.vibrate([50, 100, 50]); }, 1000);
-            }
-
-            // 维持 6 秒后系统休眠
-            setTimeout(() => {
-                gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 3);
-                ultVar.style.opacity = 0;
-                ultVar.style.filter = 'blur(10px)';
-                setTimeout(() => {
-                    osc1.stop();
-                    osc2.stop();
-                    isActive = false;
-                    document.body.classList.remove('active');
-                    resonanceLevel = 0;
-                }, 3000);
-            }, 6000);
-        }
-
-        document.getElementById('trigger').addEventListener('click', startPhysicalResonance);
-    </script>
-</body>
-</html>
+    # 5. Run the predictive algorithm for the next encounter
+    karmic_model.predict_future_tendency()
