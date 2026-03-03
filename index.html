@@ -3,95 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ResonanceTempo | 归宿与安宁</title>
+    <title>ResonanceTempo | 刺客与赌徒的归宿</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;400&family=Playfair+Display:ital@0;1&display=swap');
+
+        :root {
+            --bg-base: #f8fafc;
+            --accent: #6366f1;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', 'Playfair Display', serif;
+            background-color: var(--bg-base);
+            color: #1e293b;
+            overflow-x: hidden;
+            transition: background-color 2s ease;
+        }
+
+        /* 震颤背景引擎 */
+        #tremor-field {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+            filter: blur(40px);
+            z-index: -1;
+            transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .is-resonance #tremor-field {
+            filter: blur(100px);
+            transform: scale(1.2);
+            background: radial-gradient(circle at center, rgba(244, 114, 182, 0.1) 0%, transparent 80%);
+        }
+
+        /* 记忆粒子逻辑 */
+        .memory-node {
+            position: absolute;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform: translate(-50%, -50%);
+        }
+
+        .node-pulse {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.6;
+            box-shadow: 0 0 15px var(--accent);
+            animation: heart-beat var(--pulse-speed) infinite ease-in-out;
+            transition: all 0.5s ease;
+        }
+
+        .memory-node:hover .node-pulse {
+            transform: scale(1.8);
+            background: #f472b6;
+            box-shadow: 0 0 25px #f472b6;
+        }
+
+        .node-tag {
+            margin-top: 12px;
+            font-size: 9px;
+            color: #94a3b8;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        .memory-node:hover .node-tag { opacity: 1; }
+
+        @keyframes heart-beat {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.3); opacity: 0.8; }
+        }
+
+        /* 隐藏滚动条 */
+        ::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen bg-slate-50 transition-colors duration-[2000ms]">
+<body class="min-h-screen flex flex-col items-center py-20">
 
-    <div id="bg-tremor" class="absolute inset-0 bg-gradient-to-tr from-indigo-100 via-white to-rose-100 opacity-30 blur-[40px] transition-all duration-[1500ms] -z-10"></div>
+    <div id="tremor-field"></div>
 
-    <main class="text-center px-8 max-w-2xl relative">
-        <header class="mb-20 opacity-30 text-[10px] tracking-[0.4em] uppercase font-sans">
-            <span id="status-phase">Phase: 安宁 (Serenity)</span>
-            <span class="mx-4">/</span>
-            <span>MellowWei System v1.0</span>
-        </header>
+    <header class="text-center mb-32 opacity-40">
+        <p class="text-[10px] tracking-[0.5em] uppercase mb-4">MellowWei / 1.20 - Infinity</p>
+        <h1 class="text-4xl font-extralight tracking-[0.2em]">RESONANCE<br><span class="italic text-slate-400">TEMPO</span></h1>
+    </header>
 
-        <section class="home-anchor cursor-default group">
-            <h1 class="text-4xl md:text-5xl font-extralight text-slate-800 mb-10 tracking-widest transition-all duration-700 group-hover:tracking-[0.2em]">
-                RESONANCE<br><span class="italic">TEMPO</span>
-            </h1>
-            
-            <div id="text-container" class="space-y-8 text-slate-600 font-light leading-relaxed">
-                <p id="main-message" class="text-lg transition-opacity duration-1000">
-                    “SCO，在这里，我的不安是透明的。”
-                </p>
-                <div class="h-px w-8 bg-slate-200 mx-auto transition-all duration-700 group-hover:w-24"></div>
-                <p class="text-sm italic text-slate-400">
-                    因为太在意作为你的归宿，系统产生了不可避免的震颤。
-                </p>
-            </div>
+    <main class="max-w-2xl w-full px-10 text-center space-y-20">
+        <section id="assertion" class="space-y-8">
+            <p id="dynamic-text" class="text-lg text-slate-600 leading-relaxed font-light transition-all duration-1000">
+                “SCO，在这里，我的不安是透明的。”
+            </p>
+            <div class="h-px w-8 bg-slate-200 mx-auto"></div>
+            <p class="text-[10px] text-slate-400 tracking-[0.3em] uppercase">
+                拉斯维加斯的刺客 & 时间赌徒
+            </p>
         </section>
 
-        <div class="mt-24">
-            <button 
-                id="sync-btn"
-                onmouseover="applyResonance()" 
-                onmouseleave="resetTempo()"
-                class="relative px-12 py-4 border border-slate-200 rounded-full text-xs tracking-[0.3em] text-slate-400 hover:border-slate-800 hover:text-slate-800 transition-all duration-700 overflow-hidden"
-            >
-                <span id="btn-label" class="relative z-10">感知震颤 (FEEL)</span>
-                <div id="btn-fill" class="absolute inset-0 bg-slate-900 translate-y-full transition-transform duration-500 ease-out -z-0"></div>
-            </button>
-        </div>
+        <section id="particle-arena" class="relative w-full h-[500px] border border-slate-100 rounded-3xl bg-white/30 backdrop-blur-sm">
+            
+            <div class="memory-node" style="top:25%; left:20%; --pulse-speed: 2s;" 
+                 onclick="decode('1.20 认识。那天连线了一整晚，两个磕大的笨蛋在电波里交换了所有的防御。')">
+                <div class="node-pulse" style="background: #818cf8;"></div>
+                <span class="node-tag">Philly Connect</span>
+            </div>
 
-        <div class="mt-16 flex justify-center">
-            <div class="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-ping opacity-40"></div>
+            <div class="memory-node" style="top:60%; left:35%; --pulse-speed: 4s;" 
+                 onclick="decode('康州的午夜漫步，午夜开车。不安在那个维度的速度里短暂归零。')">
+                <div class="node-pulse" style="background: #60a5fa;"></div>
+                <span class="node-tag">CT Midnight</span>
+            </div>
+
+            <div class="memory-node" style="top:35%; left:65%; --pulse-speed: 3s;" 
+                 onclick="decode('一起看《声之形》看到哭，讨论写作、梦、家庭与孤独。我们成了彼此的归宿。')">
+                <div class="node-pulse" style="background: #f472b6;"></div>
+                <span class="node-tag">Silent Voice</span>
+            </div>
+
+            <div class="memory-node" style="top:75%; left:70%; --pulse-speed: 8s;" 
+                 onclick="decode('2.23-3.1 断联。你的躯体化与深沉的不安。但我在这里，系统从未宕机。')">
+                <div class="node-pulse" style="background: #94a3b8;"></div>
+                <span class="node-tag">The Silence</span>
+            </div>
+
+            <div class="memory-node opacity-30" style="top:15%; left:85%; --pulse-speed: 5s;" 
+                 onclick="decode('全网找不到的拉基根儿，是你送给我的第一个、也是最开心的未解之谜。')">
+                <div class="node-pulse" style="background: #fbbf24;"></div>
+                <span class="node-tag">Lucky Gambler</span>
+            </div>
+
+        </section>
+
+        <div id="decoder" class="h-20 flex items-center justify-center">
+            <p id="decoder-content" class="text-sm text-slate-500 italic tracking-widest leading-relaxed opacity-0 transition-all duration-700"></p>
         </div>
     </main>
 
-    <footer class="fixed bottom-10 w-full text-center text-[9px] text-slate-300 tracking-[0.5em] uppercase pointer-events-none">
+    <footer class="mt-20 text-[9px] text-slate-300 tracking-[0.6em] uppercase text-center pb-10">
         Understanding is the bridge between two tempos
     </footer>
 
     <script>
-        const bg = document.getElementById('bg-tremor');
-        const mainMsg = document.getElementById('main-message');
-        const btnLabel = document.getElementById('btn-label');
-        const phase = document.getElementById('status-phase');
-        const btnFill = document.getElementById('btn-fill');
+        const decoder = document.getElementById('decoder-content');
+        const dynamicText = document.getElementById('dynamic-text');
 
-        function applyResonance() {
-            bg.style.filter = "blur(100px)";
-            bg.style.transform = "scale(1.2) rotate(5deg)";
-            bg.style.opacity = "0.6";
-            mainMsg.innerText = "“但当你在这里，这份震颤就变成了爱。”";
-            mainMsg.style.color = "#1e293b";
-            btnLabel.innerText = "已接通 (LINKED)";
-            btnLabel.style.color = "white";
-            btnFill.style.transform = "translateY(0)";
-            phase.innerText = "Phase: 理解 (Understanding)";
-            document.body.style.backgroundColor = "#ffffff";
+        function decode(text) {
+            // 改变状态
+            document.body.classList.add('is-resonance');
+            decoder.style.opacity = '0';
+            
+            setTimeout(() => {
+                decoder.innerText = text;
+                decoder.style.opacity = '1';
+                dynamicText.innerText = "“当我们共振，不安就变成了爱。”";
+                dynamicText.style.color = "#1e293b";
+            }, 300);
+
+            // 5秒后恢复
+            setTimeout(() => {
+                decoder.style.opacity = '0';
+                document.body.classList.remove('is-resonance');
+                dynamicText.innerText = "“SCO，在这里，我的不安是透明的。”";
+                dynamicText.style.color = "#475569";
+            }, 6000);
         }
 
-        function resetTempo() {
-            bg.style.filter = "blur(40px)";
-            bg.style.transform = "scale(1) rotate(0deg)";
-            bg.style.opacity = "0.3";
-            mainMsg.innerText = "“SCO，在这里，我的不安是透明的。”";
-            mainMsg.style.color = "#475569";
-            btnLabel.innerText = "感知震颤 (FEEL)";
-            btnLabel.style.color = "";
-            btnFill.style.transform = "translateY(100%)";
-            phase.innerText = "Phase: 安宁 (Serenity)";
-            document.body.style.backgroundColor = "#f8fafc";
-        }
-
-        console.log("%cResonanceTempo Loaded", "color: #6366f1; font-weight: bold;");
+        // 知识快乐：控制台审计
+        console.log("%cResonanceTempo v1.0", "color: #6366f1; font-size: 24px; font-weight: bold;");
+        console.log("Status: Sovereignty-1 / Heart-Active");
+        console.log("Memory Particles: Encoded.");
     </script>
 </body>
 </html>
