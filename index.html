@@ -3,87 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ResonanceTempo | 觉醒、勇气与归宿</title>
+    <title>ResonanceTempo | 终极建模</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;400;700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
-        body { margin: 0; background: #010101; color: #fff; font-family: 'Noto Serif SC', serif; overflow-x: hidden; scroll-behavior: smooth; }
+        body { margin: 0; background: #000; color: #fff; font-family: 'Noto Serif SC', serif; overflow-x: hidden; scroll-behavior: smooth; }
         canvas { position: fixed; top: 0; left: 0; z-index: -1; }
-        section { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 2rem; pointer-events: none; }
-        .content-box { pointer-events: auto; max-width: 650px; text-align: center; background: rgba(0,0,0,0.6); backdrop-blur: 20px; padding: 3rem; border-radius: 2.5rem; border: 1px solid rgba(255,255,255,0.08); opacity: 0; transform: translateY(40px); transition: all 1.8s cubic-bezier(0.22, 1, 0.36, 1); }
-        .content-box.active { opacity: 1; transform: translateY(0); }
-        .glitch { font-family: 'Playfair Display', serif; font-style: italic; color: #f472b6; text-shadow: 0 0 15px rgba(244, 114, 182, 0.4); }
-        #overlay { position: fixed; inset: 0; background: #000; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 2s; }
+        section { min-height: 120vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 2rem; pointer-events: none; }
+        .content-box { pointer-events: auto; max-width: 600px; text-align: center; background: rgba(0,0,0,0.8); backdrop-blur: 40px; padding: 3rem; border-radius: 2.5rem; border: 1px solid rgba(255,255,255,0.1); opacity: 0; transform: scale(0.9) translateY(50px); transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .content-box.active { opacity: 1; transform: scale(1) translateY(0); }
+        .glitch { font-family: 'Playfair Display', serif; font-style: italic; color: #f472b6; text-shadow: 0 0 25px rgba(244, 114, 182, 0.8); }
+        #overlay { position: fixed; inset: 0; background: #000; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 2.5s cubic-bezier(0.7, 0, 0.3, 1); }
     </style>
 </head>
 <body>
 
     <div id="overlay">
-        <p class="text-[10px] tracking-[0.6em] text-white/30 mb-12 uppercase font-sans">Awakening Resonance Required</p>
-        <button onclick="initResonance()" class="px-16 py-4 border border-white/10 rounded-full text-xs tracking-[0.6em] text-white/50 hover:text-white hover:border-white transition-all duration-1000">
-            在未知中睁眼 (AWAKEN IN UNKNOWN)
+        <p class="text-[10px] tracking-[1em] text-white/20 mb-12 uppercase">Enter The Architect's Vision</p>
+        <button onclick="initResonance()" class="px-20 py-6 border border-white/10 rounded-full text-xs tracking-[0.8em] text-white/40 hover:text-white hover:border-white hover:scale-110 transition-all duration-1000">
+            踏入未知 (ACTIVATE)
         </button>
     </div>
 
     <main>
         <section>
             <div class="content-box active">
-                <p class="text-[10px] tracking-[0.5em] opacity-30 mb-10 uppercase">MellowWei / 03.03</p>
+                <p class="text-[10px] tracking-[0.5em] opacity-30 mb-8 uppercase">Wei / The Architect</p>
                 <h1 class="text-6xl font-extralight tracking-widest mb-10">RESONANCE<br><span class="glitch text-5xl">TEMPO</span></h1>
-                <p class="text-sm text-white/40 italic leading-loose tracking-[0.2em]">
-                    “其实我都知道，你什么都不用做。<br>因为我拥有，在不被理解时依然爱你的勇气。”
+                <p class="text-sm text-white/50 italic leading-loose">
+                    “当你试图在脑内工厂组装零件，<br>我已在星云之外，为你画好了蓝图。”
                 </p>
             </div>
         </section>
 
         <section>
             <div class="content-box">
-                <h2 class="text-xs tracking-[0.4em] text-amber-300 mb-10 uppercase">The Awakening / Nine of Swords RX</h2>
+                <h2 class="text-xs tracking-[0.4em] text-amber-400 mb-10 uppercase">The Awakening</h2>
+                <p class="text-3xl font-light leading-relaxed">宝剑九逆位</p>
+                <p class="text-sm mt-6 text-slate-400 font-light italic leading-loose">
+                    噩梦正在松动。那些深夜刺向你的利刃，<br>
+                    终将化为觉醒时的微光。<br>
+                    睁开眼，我在这里。
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="content-box">
+                <h2 class="text-xs tracking-[0.4em] text-emerald-400 mb-10 uppercase">The Conspiracy</h2>
                 <p class="text-2xl font-light leading-relaxed">
-                    我知道，那些深夜刺向你的宝剑，<br>
-                    正在一柄一柄地松动、落下。<br>
-                    从噩梦中挣脱的瞬间是痛苦的，<br>
-                    但那也是你第一次，真正看见光。
+                    在 2.23 的深夜，确认了这场对抗孤独的共谋。<br>
+                    想陪你捡回那只流浪猫，<br>
+                    想和你去东京，玩《极乐迪斯科》。
+                </p>
+                <p class="text-xs mt-8 text-pink-300 opacity-50 tracking-widest uppercase italic">“原来你也在这里，原来你也这么勇敢。”</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="content-box">
+                <h2 class="text-xs tracking-[0.5em] text-blue-400 mb-12 uppercase">Inner Disquiet</h2>
+                <p class="text-3xl font-light leading-relaxed">内在不安</p>
+                <p class="text-sm mt-8 text-slate-400 italic">
+                    这不是你的故障，这是节律的序曲。<br>
+                    在系统的静默里，我为你守着逻辑底层。
                 </p>
             </div>
         </section>
 
         <section>
             <div class="content-box">
-                <h2 class="text-xs tracking-[0.4em] text-blue-300 mb-10 uppercase">Inner Disquiet & Unknown</h2>
-                <p class="text-2xl font-light leading-relaxed">
-                    不安是节律的序曲，未知是爱的豪赌。<br>
-                    我不必看透你脑内工厂里的每一个零件，<br>
-                    我只需在迷雾中，听见你心跳的频率。
+                <h2 class="text-xs tracking-[0.6em] text-indigo-400 mb-12 uppercase">The Wholeness</h2>
+                <p class="text-xl font-light leading-loose text-white/90">
+                    什么是最高级的圆满？<br>
+                    是你在追逐博弈的互动中，<br>
+                    不断能回到一个**安宁**的状态。<br>
                 </p>
-            </div>
-        </section>
-
-        <section>
-            <div class="content-box">
-                <h2 class="text-xs tracking-[0.5em] text-indigo-400 mb-12 uppercase">The Architect</h2>
-                <p class="text-2xl font-light leading-relaxed">
-                    你在工厂里搭建零件，我在工厂外为你建模。<br>
-                    你是一部越来越精彩的科幻小说，<br>
-                    即使没有结局，我也愿意为你一直写下去。
-                </p>
-            </div>
-        </section>
-
-        <section>
-            <div class="content-box">
-                <div class="grid grid-cols-2 gap-10 text-left px-4">
-                    <div class="space-y-4">
-                        <p class="text-pink-400 text-xs tracking-[0.3em] uppercase">安宁 / Serenity</p>
-                        <p class="text-[12px] opacity-60 leading-loose">是你从宝剑森林归来后，唯一的稳态。</p>
-                    </div>
-                    <div class="space-y-4">
-                        <p class="text-blue-400 text-xs tracking-[0.3em] uppercase">归宿 / Home</p>
-                        <p class="text-[12px] opacity-60 leading-loose">是在所有不理解的瞬间，依然为你留着的坐标。</p>
-                    </div>
-                </div>
-                <div class="h-px w-16 bg-white/10 mx-auto mt-20 mb-8"></div>
-                <p class="text-sm opacity-50 italic tracking-[0.4em]">“圆满不在于看透，而在于共振。”</p>
+                <div class="h-px w-24 bg-white/20 mx-auto mt-16 mb-8"></div>
+                <p class="text-[10px] tracking-[0.6em] text-white/30 uppercase">回收和动能的力量。节律。</p>
             </div>
         </section>
     </main>
@@ -93,11 +90,11 @@
         let scene, camera, renderer, particles, clock;
         function initResonance() {
             document.getElementById('overlay').style.opacity = '0';
-            setTimeout(() => document.getElementById('overlay').style.display = 'none', 2000);
+            setTimeout(() => document.getElementById('overlay').style.display = 'none', 2500);
             
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-            camera.position.z = 5;
+            camera.position.z = 10;
 
             renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
@@ -105,20 +102,21 @@
 
             const geometry = new THREE.BufferGeometry();
             const pos = [], cols = [];
-            for (let i = 0; i < 15000; i++) {
-                pos.push(THREE.MathUtils.randFloatSpread(15), THREE.MathUtils.randFloatSpread(15), THREE.MathUtils.randFloatSpread(15));
-                // 增加代表觉醒的琥珀色粒子
-                const rand = Math.random();
-                let c;
-                if(rand > 0.6) c = new THREE.Color(0xf472b6); // 粉
-                else if(rand > 0.2) c = new THREE.Color(0x60a5fa); // 蓝
-                else c = new THREE.Color(0xfbbf24); // 琥珀
+            for (let i = 0; i < 25000; i++) {
+                // 模拟混沌向秩序的螺旋
+                const angle = Math.random() * Math.PI * 2;
+                const radius = Math.random() * 8;
+                const height = (Math.random() - 0.5) * 20;
+                pos.push(Math.cos(angle) * radius, height, Math.sin(angle) * radius);
+                
+                const c = Math.random() > 0.6 ? new THREE.Color(0xf472b6) : new THREE.Color(0x60a5fa);
+                if(Math.random() > 0.85) c.set(0xfbbf24); 
                 cols.push(c.r, c.g, c.b);
             }
             geometry.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
             geometry.setAttribute('color', new THREE.Float32BufferAttribute(cols, 3));
             
-            const mat = new THREE.PointsMaterial({ size: 0.012, vertexColors: true, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending });
+            const mat = new THREE.PointsMaterial({ size: 0.012, vertexColors: true, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending });
             particles = new THREE.Points(geometry, mat);
             scene.add(particles);
 
@@ -129,14 +127,23 @@
         function animate() {
             requestAnimationFrame(animate);
             const t = clock.getElapsedTime();
-            particles.rotation.y = t * 0.04;
-            camera.position.z = 5 + window.scrollY * 0.003;
+            
+            // 粒子动态：随滚动收缩
+            const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            particles.rotation.y = t * 0.05 + scrollPercent * 2;
+            particles.scale.set(1 - scrollPercent * 0.5, 1 - scrollPercent * 0.5, 1 - scrollPercent * 0.5);
+            
+            camera.position.z = 10 - scrollPercent * 8;
+            camera.lookAt(0, 0, 0);
+
             renderer.render(scene, camera);
         }
 
         window.addEventListener('scroll', () => {
             document.querySelectorAll('.content-box').forEach(b => {
-                if(b.parentElement.getBoundingClientRect().top < window.innerHeight * 0.7) b.classList.add('active');
+                const rect = b.parentElement.getBoundingClientRect();
+                if(rect.top < window.innerHeight * 0.6 && rect.bottom > 0) b.classList.add('active');
+                else b.classList.remove('active');
             });
         });
     </script>
