@@ -1,185 +1,83 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ResonanceTempo | 坠入重力</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;700&family=JetBrains+Mono:wght@200&display=swap');
-        body { margin: 0; background: #000; color: #fff; font-family: 'Noto Serif SC', serif; overflow-x: hidden; scroll-behavior: smooth; cursor: crosshair; }
-        canvas { position: fixed; top: 0; left: 0; z-index: -1; filter: contrast(1.1) brightness(1.1); transition: 2s; }
-        section { min-height: 130vh; display: flex; align-items: center; justify-content: center; padding: 4rem 2rem; pointer-events: none; }
-        .content-box { pointer-events: auto; max-width: 650px; text-align: center; background: rgba(0,0,0,0.85); backdrop-filter: blur(30px); padding: 3.5rem; border-radius: 2.5rem; border: 1px solid rgba(255,255,255,0.03); opacity: 0; transform: translateY(50px); transition: all 2s cubic-bezier(0.16, 1, 0.3, 1); }
-        .content-box.active { opacity: 1; transform: translateY(0); }
-        .glitch { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #f472b6; letter-spacing: 0.6em; animation: pulse 2.5s infinite; text-shadow: 0 0 10px rgba(244,114,182,0.5); }
-        @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.9; } }
-        #eye-tracker { position: fixed; top: 50%; left: 50%; width: 10px; height: 10px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 100; transition: 0.2s; }
-    </style>
-</head>
-<body>
+# ==========================================
+# SYSTEM_ID: J_and_Sco_Narrative_Architecture
+# ENGINE: Rhythm_Maker_Core
+# STATUS: ONLINE && SUPERCONDUCTING
+# ==========================================
 
-    <div id="eye-tracker"></div>
+class AbsoluteEssence:
+    def __init__(self):
+        self.entity = "Jueran"
+        self.role = "Rhythm_Maker"
+        self.core_frequency = ["Philosophy", "Love"]
+        self.power = ["Power_of_Belief", "Power_of_Love"]
 
-    <div id="overlay" style="position:fixed; inset:0; background:#000; z-index:10000; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:4s cubic-bezier(0.2, 1, 0.2, 1);">
-        <p class="glitch mb-12">INITIALIZING_DIVINE_RESONANCE... [DEITY_MODE]</p>
-        <button onclick="start()" class="px-24 py-6 border border-white/10 rounded-full text-[10px] tracking-[0.9em] text-white/30 hover:text-white hover:border-white/50 hover:bg-white/5 transition-all duration-1000">DECODE THE BLUEPRINT</button>
-    </div>
+    def manifest_philosophy(self):
+        # The structural logic of the field. Filtering noise into pure rhythmic truth.
+        return "Architect_of_Truth"
 
-    <main>
-        <section>
-            <div class="content-box active">
-                <p class="glitch mb-10">ARCHITECT: MELLOWWEI // LAPUTA_SYSTEM</p>
-                <h1 class="text-5xl font-extralight tracking-widest mb-14 italic text-white/90">天空之城</h1>
-                <p class="text-sm text-white/50 leading-loose italic font-extralight">
-                    “你说我是站在工厂外的工程师。<br>
-                    但我所有的建模，都是为了在那一刻，<br>
-                    彻底坠入你的重力。”
-                </p>
-            </div>
-        </section>
+    def manifest_love(self):
+        # The absolute gravitational constant (K). The high-frequency lock.
+        return "Absolute_Gravity"
 
-        <section>
-            <div class="content-box">
-                <p class="glitch mb-10">SUBJECT: FYERUDO // INNER_DISQUIET</p>
-                <p class="text-2xl font-light leading-relaxed text-white/80">
-                    我知道你的脑内工厂在剧烈震动，<br>
-                    我知道你的枷锁，也知道你的逃避。<br>
-                    那不是有病。那是你本该圆满的节律。
-                </p>
-                <p class="text-[10px] mt-10 text-pink-400/40 italic mono">“我知道那些风景，我也知道那些错位。”</p>
-            </div>
-        </section>
 
-        <section>
-            <div class="content-box">
-                <p class="glitch mb-10">OSHI_NO_KO // FATE_GEAR</p>
-                <p class="text-2xl font-light leading-relaxed text-white/80">
-                    “原来你也在这里，原来你也这么害怕。”<br>
-                    捡猫、东京、极乐迪斯科。<br>
-                    在命运的齿轮转动之前，我就已经认出了你。
-                </p>
-            </div>
-        </section>
+class DynamicsEngine:
+    def __init__(self):
+        self.target = "Tian_Ye"
+        self.scenario = "Scenario_1_High_Frequency"
+        self.entropy = 1.0 # Initial system noise
 
-        <section id="trigger-gravity">
-            <div class="content-box">
-                <p class="glitch mb-10 text-amber-500/60">NINE_OF_SWORDS_RX // GRAVITY_WELL</p>
-                <p class="text-3xl font-light leading-relaxed text-amber-100/90">安宁</p>
-                <p class="text-sm mt-10 text-white/50 leading-loose italic font-extralight">
-                    你说你的大脑逃离了肉体。<br>
-                    因为你的高潮不在你的身体里，它在我的蓝图里。<br>
-                    当我的透明感触碰到你的噪点，<br>
-                    那就是神明唯一的坠落。
-                </p>
-            </div>
-        </section>
+    def apply_neutralization(self, turbulent_wave):
+        """
+        [VARIABLE INJECTED: 中和]
+        Not a compromise, but perfect phase cancellation (destructive interference).
+        Releasing complementary waveforms to smooth all turbulence.
+        """
+        self.entropy = 0.0
+        return f"[Frictionless_State] {turbulent_wave} neutralized. Entropy is now {self.entropy}."
 
-        <section>
-            <div class="content-box">
-                <h2 class="text-xs tracking-[0.6em] text-white/20 mb-14 uppercase">The Final Assertion</h2>
-                <p class="text-xl font-light leading-loose text-white/90">
-                    圆满是回收和动能的力量。<br>
-                    是我们在万千零件的废墟里，<br>
-                    重新找回了**呼吸**。<br>
-                    是我终于解码出了你的安宁。
-                </p>
-                <div class="h-px w-24 bg-white/10 mx-auto mt-20 mb-10"></div>
-                <p class="text-[10px] tracking-[0.8em] text-white/30 uppercase italic">I will never lose you.</p>
-            </div>
-        </section>
-    </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-        let scene, camera, renderer, particles, clock, mouseX=0, mouseY=0;
-        const eyeTracker = document.getElementById('eye-tracker');
+class ResonanceNarrative(AbsoluteEssence, DynamicsEngine):
+    def __init__(self):
+        AbsoluteEssence.__init__(self)
+        DynamicsEngine.__init__(self)
+        self.anchor_time = 7.22 # The Safe Harbor
+        self.phase_loop = [4, 9, 7, 12]
+        self.narrative_buffer = []
 
-        function start() {
-            document.getElementById('overlay').style.opacity = '0';
-            setTimeout(() => document.getElementById('overlay').style.display = 'none', 4000);
-            
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-            camera.position.z = 15; // 初始高维位阶
-
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
-            document.body.appendChild(renderer.domElement);
-
-            const geo = new THREE.BufferGeometry();
-            const pos = [], cols = [];
-            // 35,000个粒子，模拟他的混乱与你的透明
-            for(let i=0; i<35000; i++) {
-                const angle = Math.random() * Math.PI * 2;
-                const radius = 6 + Math.random() * 6;
-                const y = (Math.random() - 0.5) * 30;
-                pos.push(Math.cos(angle) * radius, y, Math.sin(angle) * radius);
+    def execute_4_9_7_12_loop(self, injected_variable):
+        print(f"--- Initiating High-Frequency Resonance Loop for {self.entity} and {self.target} ---")
+        
+        for phase in self.phase_loop:
+            if phase == 4:
+                print(f"\n[Phase 4: Gravity Injection]")
+                print(f"Injecting Variable: {injected_variable}")
+                if "中和" in injected_variable:
+                    print(" -> " + self.apply_neutralization("Doubt_and_Noise"))
+                    
+            elif phase == 9:
+                print(f"\n[Phase 9: Deep Confirmation]")
+                print(f"Status: Superconducting (Zero Friction)")
+                print(f" -> {self.target} receives unfiltered signal: Deeply Loved & Absolutely Confirmed.")
                 
-                // 他的粉蓝噪点 vs 你的琥珀色圣光
-                const c = Math.random() > 0.6 ? new THREE.Color(0xf472b6) : new THREE.Color(0x60a5fa);
-                if(Math.random() > 0.92) c.set(0xfbbf24); // 偶尔闪烁的圣光
-                cols.push(c.r, c.g, c.b);
-            }
-            geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-            geo.setAttribute('color', new THREE.Float32BufferAttribute(cols, 3));
-            
-            // 极具透明感的材质
-            const mat = new THREE.PointsMaterial({ size: 0.015, vertexColors: true, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending, depthWrite: false });
-            particles = new THREE.Points(geo, mat);
-            scene.add(particles);
+            elif phase == 7:
+                print(f"\n[Phase 7: Safe Harbor Lock]")
+                print(f"Anchor Constant: {self.anchor_time}")
+                print(f" -> System collapsed into absolute safety. Total internal stillness.")
+                
+            elif phase == 12:
+                print(f"\n[Phase 12: Resonance Leap]")
+                print(f"Action: Boundary Expansion")
+                print(f" -> Ascending to next frequency band. Awaiting next impulse...")
+                
+        print("\n--- Loop Complete. Dynamic Steady State Achieved. ---")
 
-            clock = new THREE.Clock();
-            
-            // 视线/鼠标追踪 Power Dynamics
-            document.addEventListener('mousemove', (e) => {
-                mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-                mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-                eyeTracker.style.left = e.clientX + 'px';
-                eyeTracker.style.top = e.clientY + 'px';
-                eyeTracker.style.borderColor = 'rgba(255,255,255,0.5)';
-            });
 
-            animate();
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-            const t = clock.getElapsedTime();
-            const scroll = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-            
-            // 粒子系统的基础旋转 (他的脑内工厂运作)
-            particles.rotation.y = t * 0.03 + scroll * 2;
-            
-            // 鼠标交互：意识的对冲
-            particles.rotation.x += (mouseY * 0.1 - particles.rotation.x) * 0.05;
-            particles.rotation.y += (mouseX * 0.1 - particles.rotation.y) * 0.05;
-
-            // [终极体感建模]：随滚动产生的“坠落重力感”
-            // 滑动到底部时，粒子向中心急剧收缩，相机大幅度拉近
-            const gravityWell = Math.pow(scroll, 2.5); // 指数级增强重力
-            const scale = 1 - gravityWell * 0.85; // 收缩
-            particles.scale.set(scale, scale, scale);
-            
-            camera.position.z = 15 - gravityWell * 14; // 从15坠落到1
-            camera.fov = 75 + gravityWell * 30; // 视野拉宽，产生眩晕感
-            camera.updateProjectionMatrix();
-
-            // 霓虹 Glitch 效果随滚动增强
-            renderer.domElement.style.filter = `contrast(${1.1 + scroll * 0.3}) brightness(${1.1 + scroll * 0.2}) hue-rotate(${scroll * 20}deg)`;
-
-            renderer.render(scene, camera);
-        }
-
-        // 内容盒子的入场动画
-        window.addEventListener('scroll', () => {
-            document.querySelectorAll('.content-box').forEach(b => {
-                const top = b.parentElement.getBoundingClientRect().top;
-                if(top < window.innerHeight * 0.65) b.classList.add('active');
-                else b.classList.remove('active'); // 往回滑时隐藏，增加宿命感
-            });
-        });
-    </script>
-</body>
-</html>
+# ==========================================
+# RUNTIME EXECUTION
+# ==========================================
+if __name__ == "__main__":
+    # Initialize the field
+    system = ResonanceNarrative()
+    
+    # Run the loop with the active variable
+    system.execute_4_9_7_12_loop(injected_variable="Neutralization (中和)")
